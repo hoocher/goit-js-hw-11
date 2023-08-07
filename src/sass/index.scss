@@ -1,2 +1,62 @@
 @import './common';
 @import './example';
+
+a {
+  text-decoration: none;
+  max-width: 500px;
+}
+button {
+  cursor: pointer;
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: solid 1px black;
+}
+
+.info {
+  display: flex;
+  gap: 10px;
+}
+
+.image {
+  display: block;
+
+  //   max-width: 500px;
+  //   max-height: 350px;
+}
+.load-more {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.hidden {
+  display: none;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
