@@ -15,26 +15,22 @@ let showElements = 0;
 formEl.addEventListener('submit', getPhoto);
 
 function getPhoto(e) {
-  
   galleryEl.innerHTML = '';
   page = 1;
   e.preventDefault();
   let data = getImage(formEl[0].value, page);
   data.then(res => {
     totalElements = res.data.totalHits;
-    
-    if (totalElements === 0) {
-  return Notiflix.Notify.warning('Sorry, there are no images matching your search query. Please try again.');
-    }
-    else
 
-    showElements += res.data.hits.length;
+    if (totalElements === 0) {
+      return Notiflix.Notify.warning(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    } else showElements += res.data.hits.length;
     Notiflix.Notify.info(`"Hooray! We found ${totalElements} images."`);
     let hits = res.data.hits;
     let newMurkup = '';
     hits.forEach(photo => {
-      
-       
       let {
         webformatURL,
         largeImageURL,
@@ -69,19 +65,16 @@ function getPhoto(e) {
     });
     galleryEl.insertAdjacentHTML('beforeend', newMurkup);
     gallery.refresh();
-     loadMoreBtnEl.classList.remove('hidden');
+    loadMoreBtnEl.classList.remove('hidden');
   });
-  
- 
 }
 
 loadMoreBtnEl.addEventListener('click', loadMore);
 
 function loadMore() {
-  
-   loadMoreBtnEl.classList.add('hidden');
+  loadMoreBtnEl.classList.add('hidden');
   page += 1;
-  
+
   let data = getImage(formEl[0].value, page);
   data.then(res => {
     showElements += res.data.hits.length;
@@ -97,7 +90,7 @@ function loadMore() {
         comments,
         downloads,
       } = photo;
-      newMurkup +=  `
+      newMurkup += `
       
       <div class="photo-card">     
       <a href="${largeImageURL}"> 
@@ -124,10 +117,11 @@ function loadMore() {
     gallery.refresh();
     if (totalElements > showElements) {
       loadMoreBtnEl.classList.remove('hidden');
-    }
-    else {
+    } else {
       loadMoreBtnEl.classList.add('hidden');
-      Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`);
+      Notiflix.Notify.info(
+        `We're sorry, but you've reached the end of search results.`
+      );
     }
-    
-})
+  });
+}
